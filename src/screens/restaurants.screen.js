@@ -6,10 +6,7 @@ import { RestaurantInfoCard } from '../components/restaurant-info-card.component
 import styled from 'styled-components';
 import { SafeArea } from '../components/utility/safe-area.component';
 import { RestaurantsContext } from '../services/restaurants/restaurants.context';
-
-const SearchContainer = styled.View`
-  padding: ${(props) => props.theme.space[3]};
-`;
+import { Search } from '../components/search.component';
 
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: { padding: 16 },
@@ -42,13 +39,7 @@ export const RestaurantsScreen = () => {
         </LoadingContainer>
       )}
 
-      <SearchContainer>
-        <Searchbar
-          onChangeText={onChangeText}
-          placeholder="Search"
-          value={searchQuery}
-        />
-      </SearchContainer>
+      <Search />
 
       <RestaurantList
         data={restaurants}
