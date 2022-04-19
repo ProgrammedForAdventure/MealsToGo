@@ -1,7 +1,16 @@
 import React, { useState, useEffect, createContext } from 'react';
 import { locationRequest, locationTransform } from './location.service';
+import { Platform, Alert, ToastAndroid } from 'react-native';
 
 export const LocationContext = createContext();
+
+const notifyMessage = (message) => {
+  if (Platform.OS === 'android') {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
+  } else {
+    Alert.alert(message);
+  }
+};
 
 export const LocationContextProvider = ({ children }) => {
   const [location, setLocation] = useState('');
@@ -30,7 +39,9 @@ export const LocationContextProvider = ({ children }) => {
       .catch((err) => {
         setIsLoading(false);
         setError(err);
-        console.debug(`Location request error: ${keyword} ${err}`);
+        const message = `Location request error: ${keyword} ${err}`;
+        console.debug(message);
+        notifyMessage(message);
       });
   }, [keyword]);
 
