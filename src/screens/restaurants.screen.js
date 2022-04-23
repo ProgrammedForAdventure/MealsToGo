@@ -5,6 +5,7 @@ import { RestaurantInfoCard } from '../components/restaurant-info-card.component
 import styled from 'styled-components';
 import { SafeArea } from '../components/utility/safe-area.component';
 import { RestaurantsContext } from '../services/restaurants/restaurants.context';
+import { FavoritesContext } from '../services/favorites/favorites.context';
 import { Search } from '../components/search.component';
 
 const RestaurantList = styled(FlatList).attrs({
@@ -23,6 +24,9 @@ const LoadingContainer = styled.View`
 
 export const RestaurantsScreen = ({ navigation }) => {
   const { isLoading, restaurants } = useContext(RestaurantsContext);
+  const { favorites } = useContext(FavoritesContext);
+
+  console.log(favorites);
 
   return (
     <SafeArea>
