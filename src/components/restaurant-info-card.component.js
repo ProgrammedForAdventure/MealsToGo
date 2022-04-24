@@ -17,7 +17,7 @@ import {
   Address,
 } from './restaurant-info-card.styles';
 
-import { Favorite } from '../services/favorites/favorite.component';
+import { Favorite } from './favorites/favorite.component';
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
