@@ -20,12 +20,16 @@ export const FavoritesBar = ({ favorites, onNavigate }) => {
       </View>
 
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {favorites.map((restaurant) => {
+        {favorites.map((restaurant, index) => {
           const key = restaurant.name.split(' ').join('');
+
           return (
-            <View key={key} style={{ marginRight: 10 }}>
+            <View
+              key={key}
+              style={{ marginRight: 10, marginLeft: index === 0 ? 10 : 0 }}
+            >
               <TouchableOpacity onPress={() => onNavigate(restaurant)}>
-                <CompactRestaurantInfo restaurant={restaurant} />
+                <CompactRestaurantInfo restaurant={restaurant} isMap={false} />
               </TouchableOpacity>
             </View>
           );
