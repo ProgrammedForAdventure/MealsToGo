@@ -8,6 +8,10 @@ import { FavoritesContextProvider } from './src/services/favorites/favorites.con
 import { theme } from './src/infrastructure/theme/index';
 import { Navigation } from './src/infrastructure/navigation/index';
 
+const firebaseConfig = {
+  
+};
+
 import {
   useFonts as useOswald,
   Oswald_400Regular,
