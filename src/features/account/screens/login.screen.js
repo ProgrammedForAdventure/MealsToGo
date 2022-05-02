@@ -46,11 +46,10 @@ export const LoginScreen = ({ navigation }) => {
           textContentType="password"
           secureTextEntry
           autoCapitalize="none"
-          secure
           onChangeText={(p) => setPassword(p)}
         />
 
-        {error && <ErrorMessage>{error}</ErrorMessage>}
+        {error && <ErrorMessage style={styles.authItem}>{error}</ErrorMessage>}
 
         <AuthButton
           style={styles.authItem}
