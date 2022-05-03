@@ -53,6 +53,18 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
+  const onLogout = () => {
+    getAuth()
+      .signOut()
+      .then((result) => {
+        console.log('Successfully signed out');
+        setUser(null);
+      })
+      .catch((e) => {
+        console.log(`Failed to sign out: ${e.message}`);
+      });
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -62,6 +74,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}
