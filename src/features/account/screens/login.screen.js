@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
+import { ActivityIndicator, Colors } from 'react-native-paper';
 
 import {
   AccountBackground,
@@ -22,7 +23,7 @@ const ErrorMessage = styled(Text)`
 export const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { onLogin, error } = useContext(AuthenticationContext);
+  const { onLogin, isLoading, error } = useContext(AuthenticationContext);
 
   return (
     <AccountBackground>
@@ -51,13 +52,21 @@ export const LoginScreen = ({ navigation }) => {
 
         {error && <ErrorMessage style={styles.authItem}>{error}</ErrorMessage>}
 
-        <AuthButton
-          style={styles.authItem}
-          icon="lock-open-outline"
-          onPress={() => onLogin(email, password)}
-        >
-          Login
-        </AuthButton>
+        {!isLoading ? (
+          <AuthButton
+            style={styles.authItem}
+            icon="lock-open-outline"
+            onPress={() => onLogin(email, password)}
+          >
+            Login
+          </AuthButton>
+        ) : (
+          <ActivityIndicator
+            style={styles.authItem}
+            animating={true}
+            color={Colors.blue300}
+          />
+        )}
       </AccountContainer>
       <AuthButton style={styles.authItem} onPress={() => navigation.goBack()}>
         Back
