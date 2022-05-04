@@ -9,6 +9,9 @@ import { SafeArea } from '../../components/utility/safe-area.component';
 import { RestaurantsNavigator } from './restaurants.navigator';
 import { MapScreen } from '../../features/map/screens/map.screen';
 import { AuthenticationContext } from '../../services/authentication/authentication.context';
+import { RestaurantsContextProvider } from '../../services/restaurants/restaurants.context';
+import { LocationContextProvider } from '../../services/location/location.context';
+import { FavoritesContextProvider } from '../../services/favorites/favorites.context';
 import { colors } from '../theme/colors';
 
 const Tab = createBottomTabNavigator();
@@ -63,23 +66,20 @@ const createScreenOptions = ({ route }) => {
   };
 };
 
-export const AppNavigator = () => {
-  return (
-    <Tab.Navigator screenOptions={createScreenOptions}>
-      <Tab.Screen name="Home" component={RestaurantsNavigator} />
-      <Tab.Screen
-        name="Map"
-        component={MapScreen}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen name="Settings" component={Settings} />
-    </Tab.Navigator>
-  );
-};
-
-const styles = {
-  logoutButton: {
-    marginTop: 24,
-    marginHorizontal: 24,
-  },
-};
+export const AppNavigator = () => (
+  <FavoritesContextProvider>
+    <LocationContextProvider>
+      <RestaurantsContextProvider>
+        <Tab.Navigator screenOptions={createScreenOptions}>
+          <Tab.Screen name="Home" component={RestaurantsNavigator} />
+          <Tab.Screen
+            name="Map"
+            component={MapScreen}
+            options={{ headerShown: false }}
+          />
+          <Tab.Screen name="Settings" component={Settings} />
+        </Tab.Navigator>
+      </RestaurantsContextProvider>
+    </LocationContextProvider>
+  </FavoritesContextProvider>
+);

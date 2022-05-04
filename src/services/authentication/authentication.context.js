@@ -65,6 +65,10 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
 
+  const clearError = () => {
+    setError(null);
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -75,6 +79,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         onLogin,
         onRegister,
         onLogout,
+        clearError,
       }}
     >
       {children}
