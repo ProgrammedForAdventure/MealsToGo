@@ -35,3 +35,11 @@ export const AuthButton = styled(Button).attrs({
 export const AuthInput = styled(TextInput)`
   width: 300px;
 `;
+
+export const AnimationWrapper = styled.View`
+  width: 100%;
+  height: 40%;
+  position: absolute;
+  top: 30px;
+  padding: ${(props) => props.theme.space[2]};
+`;
